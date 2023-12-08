@@ -1,0 +1,147 @@
+/* .th-sortable-asc {
+    background: url('../img/arrow_up.svg') right center no-repeat;
+    padding-right: 15px;
+    background-size: 12px !important;
+}
+
+.th-sortname-asc {
+    background: url('../img/arrow_full_up.svg') right center no-repeat;
+    padding-right: 32px;
+    background-size: 29px 14px;
+}
+
+.th-sortable-desc {
+    background: url('../img/arrow_down.svg') right center no-repeat;
+    padding-right: 15px;
+    background-size: 12px;
+}
+
+.th-sortname-desc {
+    background: url('../img/arrow_full_down.svg') right center no-repeat;
+    padding-right: 32px;
+    background-size: 29px 14px;
+}
+
+.th-sorted {
+    color: #0d6efd;
+}
+
+.th-sortable-asc:hover,
+.th-sortable-desc:hover,
+.th-sortname-asc:hover,
+.th-sortname-desc:hover,
+.th-sorted-asc:hover,
+.th-sorted-desc:hover {
+    color: #0b5ed7;
+    cursor: pointer;
+}
+
+.contact-icon {
+    width: 16px;
+    height: 16px;
+    float: left;
+    margin: 2px 4px;
+}
+
+.td_actions {
+    min-width: 210px;
+}
+
+.contacts {
+    border: 0px;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.contacts-invalid {
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+    padding: 3px;
+} */
+
+
+/* edited by saye */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table {
+    text-align: center;
+}
+
+#delete-btn {
+    margin-left: 5px;
+}
+
+#countOfClients {
+    text-align: center;
+    font-weight: bold;
+}
+
+.sort {
+    color: #0d6efd;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.sort-img {
+    width: 20px;
+    height: 20px;
+    transform: rotate(0deg);
+}
+
+.sort-id,
+.sort-fio,
+.sort-created,
+.sort-upd {
+    width: 20px;
+    height: 20px;
+    transform: rotate(0deg);
+    transition: all 0.5s;
+}
+
+.contacts-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 3px;
+}
+
+.rosatom-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    transition: all 1s ease;
+    animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(-360deg);
+    }
+}
+
+table {
+    text-align: center;
+}
+
+
+/* 
+#addModal {
+    visibility: hidden;
+}
+
+div.modal:nth-child(4) {
+    opacity: 0;
+    z-index: -1;
+}
+
+.modal-dialog {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+} */

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CRM</title>
+    <script src="../assets/js/color-modes.js"></script>
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- Модальное окно с формой для создания клиента -->
+    <div class="modal fade" id="addClientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">🆕 Добавить клиента</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/create-client" method="post" name="create-form">
+                        <div class="mb-1">
+                            <label for="sName" class="col-form-label">Фамилия:</label>
+                            <input type="text" class="form-control" id="sName" name="surname" required>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="fName" class="col-form-label">Имя:</label>
+                            <input type="text" class="form-control" id="fName" name="name" required>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="pName" class="col-form-label">Отчество:</label>
+                            <input type="text" class="form-control" id="pName" name="lastName" required>
+                        </div>
+
+                        <div class="mb-3 contacts" id="modal-client-contacts">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Тип контакта</th>
+                                        <th>Контакт</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="container" id="add-contact">
+                            <div class="container" id="add-contact-select" data-id="1">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="modal-client-new-contact-type" name="contactType">
+                                            <option value="Email">Email</option>
+                                            <option value="phone">Телефон</option>
+                                            <option value="VK">VK</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Другое">Другое</option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 ps-0">
+                                        <input type="text" id="modal-client-new-contact" class="form-control" aria-label="Контакт" value="" required name="contactValue">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <button id="modal-client-contact-new-contact-add-btn" type="button" class="btn btn-outline-primary" onclick="addSelectContact()" title="Добавить контакт">
+                                        <img src="../img/add-logo.svg" alt="add-logo" style="width: 24px;">
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button id="modal-client-create-cancel-btn" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <button id="modal-client-create-confirm-btn" type="submit" class="btn btn-success">Создать</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- / Модальное окно с формой для создания клиента -->
+
+    <!-- Модальное окно с формой для редактирования данных о клиенте -->
+    <div class="modal fade" id="update-client-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">✏️ Редактирование данных о клиенте</h5>
+                    <button id="btn-close" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+
+                <form action="/update-client" method="post">
+                    <div class="modal-body">
+                        <div class="mb-1">
+                            <label for="id" class="col-form-label">ID:</label>
+                            <input type="text" class="form-control" id="client-id" name="id" readonly>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="sName" class="col-form-label">Фамилия:</label>
+                            <input type="text" class="form-control" id="update-surname" name="surname" required>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="fName" class="col-form-label">Имя:</label>
+                            <input type="text" class="form-control" id="update-name" name="name" required>
+                        </div>
+
+                        <div class="mb-1">
+                            <label for="pName" class="col-form-label">Отчество:</label>
+                            <input type="text" class="form-control" id="update-lastName" name="lastName" required>
+                        </div>
+
+                        <div class="mb-3 contacts" id="modal-client-contacts">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Тип контакта</th>
+                                        <th>Контакт</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="container" id="update-contact">
+                            <div class="container" id="update-contact-select" data-id="1">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="input-group mb-3">
+                                            <select class="form-select" id="modal-client-update-contact-type" name="contactType">
+                                            <option value="Email">Email</option>
+                                            <option value="phone">Телефон</option>
+                                            <option value="VK">VK</option>
+                                            <option value="Facebook">Facebook</option>
+                                            <option value="Другое">Другое</option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 ps-0">
+                                        <input type="text" id="modal-client-update-contact" class="form-control" aria-label="Контакт" value="" required name="contactValue">
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <button id="modal-client-contact-update-contact-add-btn" type="button" class="btn btn-outline-primary" onclick="updateSelectContact()" title="Сохранить контакт">
+                                        <img src="../img/add-logo.svg" alt="add-logo" style="width: 24px;">
+                                    </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        <button type="submit" class="btn btn-primary" id="save-update-btn">Сохранить</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- Модальное окно с формой для редактирования данных о клиенте -->
+
+    <div class="header">
+        <nav class="navbar navbar-expand-md fixed-top bg-white sticky-top shadow-sm rounded">
+            <div class="container-fluid">
+                <img src="../img/rosatom-logo.png" alt="rosatom-logo" class="rosatom-logo" draggable="false">
+                <a class="navbar-brand" href="/">Служба информационных технологий</a>
+                <div class="navbar-collapse" id="navbarCollapse">
+                    <input id="search-input" class="form-control" style="width: 60%; margin-right: 20px;" type="search" placeholder="Поиск клиента..." aria-label="Search">
+                    <button id="search-btn" class="btn btn-outline-success" type="button" onclick="search()">🔎 Поиск</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-center" style="padding: 1rem 0;">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addClientModal">Добавить клиента</button>
+                </div>
+            </div>
+            <div class="row " id="main-content ">
+                <!-- Таблица клиентов -->
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a class="sort" id="sort-id">ID <img class="sort-id" src="../img/sort.png" alt="sort-img"></a></th>
+                            <th scope="col"><a class="sort" id="sort-fio">Фамилия Имя Отчество <img class="sort-fio" src="../img/sort.png" alt="sort-img"></a></th>
+                            <th scope="col"><a class="sort" id="sort-created">Дата создания <img class="sort-created" src="../img/sort.png" alt="sort-img"></a></th>
+                            <th scope="col"><a class="sort" id="sort-updated">Дата изменения <img class="sort-upd" src="../img/sort.png" alt="sort-img"></a></th>
+                            <th scope="col">Контакты</th>
+                            <th scope="col">Действия</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="main__table_tbody">
+
+                        <!-- Таблица клиентов -->
+
+                    </tbody>
+                </table>
+
+                <!-- <a href="#" class="d-inline-block" data-bs-toggle="tooltip" title="Default tooltip">
+                    <img src="../img/email-logo.png" alt="">
+                </a>
+
+
+                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+                    Tooltip on top
+                  </button> -->
+
+                <hr>
+                <!-- Отображение количества клиентов -->
+                <h6 id="countOfClients" style="margin-bottom: 20px;"></h6>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="../js/front-client.js "></script>
+</body>
+
+</html>
