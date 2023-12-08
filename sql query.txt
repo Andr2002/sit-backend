@@ -1,0 +1,20 @@
+CREATE TABLE public.clients (
+	id int NOT NULL GENERATED ALWAYS AS IDENTITY,
+	surname varchar NOT NULL,
+	"name" varchar NOT NULL,
+	lastname varchar NOT NULL,
+	"createdAt" timestamp NOT NULL,
+	"updatedAt" timestamp NOT NULL,
+	contacts json NOT NULL,
+	CONSTRAINT clients_test_pk PRIMARY KEY (id)
+);
+
+-- Column comments
+
+COMMENT ON COLUMN public.clients_test.id IS 'ID клиента';
+COMMENT ON COLUMN public.clients_test.surname IS 'фамилия клиента';
+COMMENT ON COLUMN public.clients_test."name" IS 'имя клиента';
+COMMENT ON COLUMN public.clients_test.lastname IS 'отчество клиента';
+COMMENT ON COLUMN public.clients_test.createdat IS 'дата создания';
+COMMENT ON COLUMN public.clients_test.updatedat IS 'дата изменения';
+COMMENT ON COLUMN public.clients_test.contacts IS 'json-объект с контактами клиента';
